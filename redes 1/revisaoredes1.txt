@@ -1,0 +1,85 @@
+https://pucpr.blackboard.com/bbcswebdav/pid-1000582-dt-content-rid-10946414_1/courses/360751_43761_U_T/ConectividadeLista1.pdf
+
+exercicio 1
+( 1 ) dispositivo de wi fi olha mac e nao olha ip, caracteristico de lan
+( 1 )
+( 2 ) wan pois usa roteador entao usa IP
+( 2 )
+( 1 e 3 )a resposta é 1 porem devido ao segundo comentario ela passa a ser 3.
+( 1 )
+( 2 )
+
+1 - lan
+2 - wan
+3 - ambos
+4 - nenhum
+
+1#internet é WAN
+2#se o prefixo de rede for diferente é pq vc esta numa wan
+
+EXERCICIO 2
+(1)
+(1)
+(2)
+(2)
+(1)
+(1)
+
+1-Protocolo (especifíca, define o formato da mensagem)
+2-Camada de Rede (apenas um classificador,nao faz nada fisico, rapidamente diz para que serve o protocolo)
+3-Ambos
+4-Nenhum
+
+TCP E UDP "camada de transporte"
+ipv4 e ipv6 "camada de "
+
+roteador olha ip, access point/switch olha endereço fisico(MAC)
+
+bluetooth e wifi sao protocolocas na mesma camada.
+
+EXERCICIO 3
+I. VERDADEIRO
+II. VERDADEIRO
+III. VERDADEIRO( POR DEFINIÇÃO)
+IV. VERDADEIRO
+V. VERDADEIRO
+VI. VERDADEIRO
+
+EXERCICIO 4
+(1)
+(3)ligacao de lans diferentes
+(2)mesma lan = camada de enlace
+(4)porta é coisa da camada de transporte, por isso se aplica aqui.
+(7)placa de rede tem enlace e fisico(network interface)
+(8)a resposta certa é 3+4(camada rede e transporte.)
+(5)padronizar o protocolo para evitar que cliente servidor seja feito pelo mesmo fabricante.
+(2)
+(3)
+(4)
+
+1. Camada Física
+2. Camada de
+Enlace
+3. Camada de
+Rede
+4. Camada de
+Transporte
+5. Camada de
+Aplicação
+6. Alternativas 4 e
+5.
+7. Alternativas 1 e
+2.
+8. Nenhuma das
+anteriores.
+
+N.I.C network interface card
+
+wifi evoluiu, mas na camada fisica, a camada de enlace permaneceu praticamente a mesma
+
+ip camada de rede
+
+tcp - todas as aplicacoes menos as de tempo real
+upd - aplicacoes de tempo real(ex: voip.. etc)
+
+EXERCICIO 5

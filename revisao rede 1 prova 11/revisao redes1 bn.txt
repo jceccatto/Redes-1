@@ -1,0 +1,255 @@
+Exercício 1: Indique como funcionam cada um dos
+mecanismos de sincronização de processos.
+
+1. MUTEX(lock)
+2. SEMAFOROS
+3. EVENTOS
+4. CONDIÇÕES
+5. JOIN
+6. Todos
+7. Nenhum
+
+( 1 ) Permite impor a condição que apenas uma única thread
+acesse um recurso de cada vez.(mais de uma thread acessar, lock bota ela pra dormir)
+( 2 ) Permite impor a condição que um número limitado de
+threads, que pode ser maior que 1, tenha acesso a um
+recurso.(mutex é pra uma thread de cada vez e o semaforo é para N.)
+( 3 ) Permite colocar uma thread em estado de espera, até que
+seja acordada por outra thread.(colocar em estado de espera, a thread é colocada pra dormir, fixando ela numa fila.)
+( 5 ) Impõe a condição que as threads devem terminar antes
+que o programa principal continue.
+( 4 ) Combina os mecanismos de MUTEX e EVENTOS.
+( 7 ) Usados para evitar starvation.(nenhum evita, os mecanismos fazem com que aconteça a Starvation, meio que por culpa do programador)
+( 6 ) Usados para evitar condições de corrida.
+
+**** Olhar os exercicios praticos para ajudar a lembrar os conceitos do exercicio
+
+----------------------------------------------------------------------
+Exercício 2: Defina os seguintes problemas que
+podem acontecer com o uso de threads.
+
+--Starvation
+
+Em programação concorrente, ocorre inanição quando um processo nunca é executado ("morre de fome"), pois processos de prioridade maior sempre o impedem de ser executado.
+
+Starvation pode ser causado por erros nos uso dos mecanismos de sincronizaçao. por exemplo um recurso é bloqueado por uma thread e nunca é liberado.
+
+Quando existe bloqueio duplo(uma thread aguarda outra para liberar o recurso, mas esta thread tambem esta aguardando a liberaçcao da outra) denomina-se deadlock.
+ 
+--Condição de Corrida
+efeito secundario da sincronização de processos.
+
+Uma condição de corrida é uma falha num sistema ou processo em que o resultado do processo é inesperadamente dependente da sequência ou sincronia doutros eventos. Apesar de ser conhecido em português por 'condição de corrida' uma tradução melhor seria 'condição de concorrência' pois o problema está relacionado justamente ao gerenciamento da concorrência entre processos teoricamente simultâneos.O fenômeno pode ocorrer em sistemas eletrônicos, especialmente em circuitos lógicos, e em programas de computador, especialmente no uso de multitarefa ou computação distribuída.
+
+O programa multithread produz resultados imprevisiveis que depende da ordem em que as threads sao executadas. Essa ordem depende da sequencia ou sincronia doutros eventos.
+
+----------------------------------------------------------------------
+Exercício 3. Indique quais problemas abaixo podem
+ser resolvidos com mecanismos de sincronização de
+processos
+
+I. Limitar o número de threads em um servidor, evitando que novas
+threads sejam criadas até que alguma das threads em execução
+termine.
+R: Semaforo.
+
+II. Evitar que threads que efetuem operações matemáticas sobre
+uma mesma variável criem uma condição de corrida.
+R: quando é apenas uma variavel -> MUTEX(lock)
+
+III. Criar um programa de reconhecimento de imagens, onde cada
+parte da imagem é tratada inicialmente por uma thread diferente, e
+o resultado é interpretado pelo programa principal.
+R: Join
+
+IV. Evitar que o consumidor receba tarefas em excesso em um
+problema produtor-consumidor.
+R: Evento(se tiver conversa entre as threads).
+
+V. Evitar que um filósofo morra de fome no problema do jantar dos
+filósofos.
+R: nenhum, é o programador que tem que fazer isso. a soluçao foi um artificio de programador.(a solucao do exercicio foi programar para aque cada filosofo utilizasse um garfo e pegasse o de sua direita.)
+
+----------------------------------------------------------------------
+Exercício 4. Relacione o efeito dos modos de abertura
+de um arquivo. Cada alternativa pode corresponde a
+mais de um modo.
+
+1. r ()read nao quero alterar o arquivo, aponta para o começo.
+2. r+ ()read nao quero alterar o arquivo, aponta para o começo.
+3. w ()write quero atualizar o arquivo, aponta para o começo, sobrescrevendo o arquivo.
+4. w+ ()write quero atualizar o arquivo, aponta para o começo, sobrescrevendo o arquivo.
+5. a ()append melhor para manipulaçao de arquivo, aponta para o final.
+6. a+ ()append melhor para manipulaçao de arquivo, aponta para o final.
+7. n.d.a
+(com o final em b(que estao faltando), é manipulaçao para binário.)
++ => significa que abre o arquivo em escrita e leitura.
+
+( r ) Abre um arquivo em modo leitura, coloca o ponteiro de arquivo
+no início e não permite atualização.
+( r, r+ ) Abre um arquivo que precisa existir. Não cria o arquivo caso
+ele não exista.
+( w, w+, a, a+ ) Abre um arquivo e o cria automaticamente caso ele não exista.
+( w+, a+ ) Abre um arquivo em modo escrita e leitura. Cria o arquivo caso
+não exista.
+( w+ ) Abre um arquivo em modo escrita e leitura. Apaga o arquivo
+caso ele exista.
+( a+ ) Abre um arquivo em modo escrita e leitura. Não apaga o
+arquivo caso ele exista.
+( a,a+ ) Cria um arquivo em modo atualização, colocando o ponteiro
+de arquivo no final.
+
+
+----------------------------------------------------------------------
+Exercício 5: Defina o que significa os formatos de um
+arquivo.
+-Binário
+
+Arquivo formado por um conjunto de bytes nao codificados. Isto é, qualquer valor de byte é possivel e os bytes nao tem significado especial.
+
+-Texto
+
+Arquivo formado por um conjunto de bytes codificados (tipicamente em ASCII), Apenas valores correspondentes ao codigo ASCII podem estar no arquivo. Os caracteres \n e \r(10 e 13) significam fim de linha.
+
+Arquivos texto podem ser lidos uma linha de cada vez. Arquivos em binario nao.
+
+----------------------------------------------------------------------
+Exercício 6: Suponha que você esteja na pasta /user/redes/Docs.
+Indique qual comando coloca diretório na posição indicada.
+
+1. cd .. (volta 1)
+2. cd /BES (vai para a pasta raiz BES, concorrente da user)
+3. cd BES (vai atè a pasta BES a partir da pasta que tu esta.)
+4. cd ../../redes (volta 2 e vai para redes.)
+5. cd ../Docs (volta 1 e volta pra docs)
+6. cd /user/redes/Docs (caminho do diretorio até docs)
+7. cd user/redes/Docs (erro?)
+8. cd ../..
+9. cd …. 			(cd.... nao existe)
+10. cd ../Docs/BES
+11. n.d.a.
+
+( 11 ) /
+( 8 ) /user
+( 1 e 4 ) /user/redes/
+( 5 e 6 ) /user/redes/Docs
+( 3 e 10 ) /user/redes/Docs/BES
+
+/ é o nome absoluto, se voce coloca barra, é o caminho absoluto
+
+----------------------------------------------------------------------
+Exercicio 7. Descreva para que servem os serviços indicados.
+Servicos de rede
+
+-DHCP: DINAMIC HOST CONFIGURATION PROTOCOL
+
+PERMITE CONFIGURAR OS PARAMETROS DE REDE AUTOMATICAMENTE EM UM HOST.
+OS PARAMETROS MAIS COMUNS SAO: IP, GATEWAY DEFAULT e SERVIDOR DNS PRIMARIO E SECUNDARIO. 
+
+-DNS: DOMAIN NAME SERVER OU DOMAIN NAME SYSTEM
+
+SERVICO QUE PERMITE DESCOBRIR O ENDERECO IP ASSOCIADO A UM NOME(FQDN = FULLY QUALIFIED DOMAIN NAME => WWW.GOOGLE.COM.BR, WWW(HOST).GOOGLE(DOMINIO).COM(DOMINIO).BR(DOMINIO) TUDO JUNTO É O FQDN).
+
+----------------------------------------------------------------------
+Exercício 8: Considerando os diferentes tipos de registros
+do serviço de nomes DNS, relacione as colunas.
+
+1. Registro SOA
+2. Registro A
+3. Registro MX
+4. Registro NS
+5. Registro CNAME
+6. Registro PTR
+7. Nenhuma das
+anteriores.
+
+( 4 ) Identifica um servidor DNS que responde por um
+domínio de nomes. Pode haver mais de um.
+( 1 ) Identifica o servidor DNS que é a autoridade para um
+domínio de nomes, e contém a cópia master (onde são feitas
+as alterações) do arquivo zone.
+( 2 ) Permite relacionar um nome de host a um endereço IP. (REGISTRO DO TIPO A, RESPONDE EX: WWW.PUCPR.BR A 200.192.112.2)
+( 3 ) Permite identificar o servidor de email default de um
+domínio de nomes. Pode haver mais de um.
+( 5 ) Utilizado para dar mais de um nome para um mesmo
+host.
+( 6 ) Permite relacionar um endereço de host a um nome, em
+zonas de consulta reversa.
+
+-------------------------------------------------------------------
+Exercício 9: Indique onde está registrada cada uma das seguintes
+informações.
+
+1. Zone Root
+2. Zone BR
+3. Zone PUCPR
+4. Zone PPGIA
+5. Zone UFPR
+6. 2 e 3
+7. 2 e 5
+8. n.d.a.
+
+( 3 ) ava.pucpr.br
+( 3 ) www.pucpr.br
+( 3 ) www.ppgia.pucpr.br
+( 5 ) Servidor SOA da ufpr
+( 2 e 3 = 6 ) Nome dos servidores que respondem (NS) pelo
+domínio pucpr.br
+( 1 ) Endereço IP do servidor dns.br
+( 2 e 5 = 7) Endereço IP do servidor do servidor dns.ufpr.br
+
+para ser dns, tem que ter um arquvio de zona separado.
+
+--------------------------------------------------------------
+Exercício 10. Ainda em relação ao cenário 8, indique as
+afirmações verdadeiras.
+
+I. Se os servidores do domínio ufpr.br forem configurados para responder a
+consultas recursivas, eles irão retornar registros do tipo A para uma consulta
+relativa ao nome www.ppgia.pupcr.br.(V)
+II. Se os servidores do domínio ufpr.br não forem configurados para receber
+consultas recursivas, eles vão retornar registros do tipo NS para uma consulta
+relativa ao nome www.ufpr.br.(F)
+III. Se os servidores do domínio .br não forem configurados para receber consultas
+recursivas, eles vão retornar um registro do tipo NS para uma consulta relativa ao
+nome www.ufpr.br.(V)
+IV. Se um usuário do servidor dns.pucpr.br solicitar o endereço IP do servidor
+www.ufpr.br e receber uma resposta dita autoritária, então, certamente, essa
+resposta veio da cache do próprio servidor dns.pucpr.br.(F) (NAO AUTORITARIO VEM DA CACHE, AUTORITARIO VEM DO SOA)
+V. Qualquer consulta feita ao servidor dns.pucpr.br sobre servidores no domínio
+ufpr.br irá retornar sempre respostas não autoritárias, pois o servidor da PUCPR
+não é o SOA do domínio ufpr.br.(F)
+--------------------------------------------------------------
+Exercício 11: Ordene a sequencia de mensagens trocadas entre um cliente e
+um servidor de DHCP assumindo que o cliente ainda não possui endereço IP
+e efetua uma renovação após obter o endereço IP.
+
+1. O cliente envia DHCP DISCOVERY em Broadcast (voce nao escolhe o servidor, por isso é broadcast)
+2. O cliente envia DHCP DISCOVERY em Unicast ()
+3. O cliente envia DHCP REQUEST em Broadcast (confirma que voce quer o servidor "original", assim declinando outros servidores e os liberando)
+4. O cliente envia DHCP REQUEST em Unicast ()
+5. O servidor envia DHCP OFFER ()
+6. O servidor envia DHCP ACK ()
+7. O cliente envia DHCP RELEASE (quando tu nao quer mais o ip vc dar o release e mata a conexao.)
+
+( 1 ) ( 5 ) ( 3 ) ( 6 ) .... ( 4 ) ( 6 )
+obtencao de ip	------------ renovacao de ip
+
+--------------------------------------------------------
+Exercício 12: Indique as afirmativas verdadeiras em
+relação ao cenário G.
+
+I. Este cenário de rede não irá funcionar, pois os clientes conectados ao roteador 1
+não conseguem enviar mensagens de DHCPDISCOVER ao servidor DHCP, pois os
+roteadores 1 e 2 não irão propagar as mensagens em broadcast.(F)(O agente Relay converte a requisicao em unicast)
+II. Para que os clientes possam receber endereços do servidor DHCP, é necessário
+incluir o agente relay também no roteador 2, para que ele propague as mensagens
+DHCPDISCOVER em broadcast. (F)()
+III. O servidor DHCP fornece as seguintes informações aos clientes conectados ao
+roteador 1: endereço IP, gateway default, servidor DNS primário e secundário. O
+endereço do servidor HTTP não é configurado pelo servidor DHCP.(V)(ele nao configura servidor web, ele configura dominio local)
+IV. As mensagens trocadas entre os clientes e o servidor DHCP são definidas pelo
+protocolo BOOTP (Bootstrap Protocol), que corresponde a um protocolo de
+aplicação transportado pelo protocolo UDP.(V)(um outro exemplo possivel seria o DNS)
+V. Para manter seu endereço, o cliente precisa enviar mensagens do tipo
+DHCPDISCOVER periodicamente para o servidor DHCP. (F)(DHCPDISCOVER é quando voce nao conseguiu manter o IP, ou quando tu recebe um nao na renovacao.)
